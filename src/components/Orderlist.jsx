@@ -1,8 +1,15 @@
-import React from "react";
 
-function OrderList() {
+
+function OrderList({ orders }) {
   return (
-    <div className="order-list">
+    <div
+      style={{
+        width: "90%",
+        background: "#f1f2f6",
+        padding: "20px",
+        borderRadius: "10px",
+      }}
+    >
       <h2>Liste des Commandes</h2>
       <table>
         <thead>
@@ -12,23 +19,22 @@ function OrderList() {
             <th>Quantité</th>
             <th>Total</th>
             <th>Statut</th>
+          
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Ahmed</td>
-            <td>Huile d'olive</td>
-            <td>2</td>
-            <td>240 MAD</td>
-            <td>En attente</td>
-          </tr>
-          <tr>
-            <td>Ali</td>
-            <td>Miel</td>
-            <td>1</td>
-            <td>90 MAD</td>
-            <td>Livrée</td>
-          </tr>
+          {orders.map((order, i) => (
+            <tr key={i}>
+              <td>{order.name}</td>
+              <td>{order.product}</td>
+              <td>{order.quantity}</td>
+              <td>{order.total} MAD</td>
+              <td>{order.status}</td>
+              <td>
+                
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>

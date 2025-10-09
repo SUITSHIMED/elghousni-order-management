@@ -1,29 +1,37 @@
-
-import Navbar from "./components/NavBar";
+import React, { useState } from "react";
+import Sidebar from "./components/Sidebar";
 import OrderForm from "./components/Orderform";
-import ProductSelector from "./components/Productselector";
-import OrderSummary from "./components/Ordersummary";
-import OrderList from "./components/Orderlist";
-import "./App.css";
+import OrderList from "./components/OrderList";
+import Summary from "./components/Summary";
 
 function App() {
+  const [orders, setOrders] = useState([]);
+
+  // 🟢 Add a new order to the list
+  const addOrder = (newOrder) => {
+    setOrders([...orders, newOrder]);
+  };
+
   return (
-    <div className="app-container">
-      <Navbar />
+    <div style={{ display: "flex", height: "100vh" }}>
+      <Sidebar />
 
-      <main className="main-content">
-        <section className="left-card">
-        
-          <OrderForm />
-          <ProductSelector />
-        </section>
-
-        <section className="right-card">
-          <OrderList />
-          <OrderSummary />
-          
-        </section>
-      </main>
+      <div
+        style={{
+          flex: 1,
+          width: "90%",
+          margin: "0 auto",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "20px",
+          padding: "20px",
+        }}
+      >
+        <OrderForm onAddOrder={addOrder} />
+        <OrderList orders={orders} />
+        <Summary orders={orders} />
+      </div>
     </div>
   );
 }
