@@ -1,18 +1,20 @@
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import React, { useState } from "react";
 import Sidebar from "./components/Sidebar";
 import OrderForm from "./components/Orderform";
-import OrderList from "./components/OrderList";
+import OrderList from "./components/Orderlist";
 import Summary from "./components/Summary";
 
 function App() {
   const [orders, setOrders] = useState([]);
-
-  // 🟢 Add a new order to the list
   const addOrder = (newOrder) => {
     setOrders([...orders, newOrder]);
   };
+  
 
   return (
+        
+      
     <div style={{ display: "flex", height: "100vh" }}>
       <Sidebar />
 
@@ -33,6 +35,7 @@ function App() {
         <Summary orders={orders} />
       </div>
     </div>
+      
   );
 }
 

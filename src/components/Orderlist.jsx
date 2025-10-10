@@ -1,16 +1,16 @@
 
-
 function OrderList({ orders }) {
+ 
   return (
     <div
       style={{
         width: "90%",
-        background: "#f1f2f6",
+        background: "#c5c7d2ff",
         padding: "20px",
         borderRadius: "10px",
       }}
     >
-      <h2>Liste des Commandes</h2>
+      <h2 style={{ color: "#2f3640", marginBottom: "15px" }}>Liste des Commandes</h2>
       <table>
         <thead>
           <tr>
@@ -30,12 +30,13 @@ function OrderList({ orders }) {
               <td>{order.quantity}</td>
               <td>{order.total} MAD</td>
               <td>{order.status}</td>
-              <td>
-                
-              </td>
+              <td><button onClick = {() => handleDelete (order.id)} >Delete</button></td>
+               
             </tr>
+            
           ))}
         </tbody>
+     
       </table>
     </div>
   );
