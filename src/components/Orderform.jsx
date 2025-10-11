@@ -36,7 +36,7 @@ function OrderForm({ onAddOrder }) {
         margin: "auto",
       }}
     >
-      <h2 style={{ color: "#2f3640", marginBottom: "15px" }}> Créer une Commande</h2>
+      <h2 style={{ color: "#2f3640", marginBottom: "15px" , textAlign:"center" }}> Créer une Commande</h2>
       <form onSubmit={ajoutSubmit}>
         <input
           type="text"
