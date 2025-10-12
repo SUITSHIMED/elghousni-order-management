@@ -9,7 +9,11 @@ function App() {
   const [orders, setOrders] = useState([]);
   const addOrder = (newOrder) => {
     setOrders([...orders, newOrder]);
+  }
   };
+  const handleDelete = (indexToDelete) => {
+    const updatedOrders = orders.filter((_,index) => index !== indexToDelete);
+    setOrders (updatedOrders);
   
 
   return (

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import products from "../data/products";
 
 function OrderForm({ onAddOrder }) {
-  const [pDelete , setpDelete ]= useState("");
+
   const [name, setName] = useState("");
   const [selectedProduct, setSelectedProduct] = useState("");
   const [quantity, setQuantity] = useState(0);
