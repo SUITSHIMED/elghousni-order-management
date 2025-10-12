@@ -10,10 +10,11 @@ function App() {
   const addOrder = (newOrder) => {
     setOrders([...orders, newOrder]);
   }
-  };
+  
   const handleDelete = (indexToDelete) => {
     const updatedOrders = orders.filter((_,index) => index !== indexToDelete);
     setOrders (updatedOrders);
+    };
   
 
   return (
@@ -35,7 +36,7 @@ function App() {
         }}
       >
         <OrderForm onAddOrder={addOrder} />
-        <OrderList orders={orders} />
+        <OrderList orders={orders} onDelete={handleDelete}  />
         <Summary orders={orders} />
       </div>
     </div>

@@ -1,5 +1,5 @@
 
-function OrderList({ orders }) {
+function OrderList({ orders , onDelete }) {
  
   return (
     <div
@@ -34,7 +34,7 @@ function OrderList({ orders }) {
               <td style={{padding:"10px"}}>{order.quantity}</td>
               <td style={{padding:"10px"}}>{order.total} MAD</td>
               <td style={{padding:"10px"}}>{order.status}</td>
-              <td><button onClick = {() => handleDelete (order.id)} >Delete</button></td>
+              <td><button onClick = {() => onDelete(i)} >Delete</button></td>
                
             </tr>
             
