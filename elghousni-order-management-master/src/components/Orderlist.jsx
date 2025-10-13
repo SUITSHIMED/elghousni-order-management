@@ -5,7 +5,7 @@ function OrderList({ orders , onDelete }) {
     <div
       style={{
         width: "90%",
-        background: "#c5c7d2ff",
+        background: "#9699a7ff",
         padding: "20px",
         borderRadius: "10px",
       }}
