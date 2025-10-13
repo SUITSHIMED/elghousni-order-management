@@ -7,6 +7,8 @@ import Summary from "./components/Summary";
 
 function App() {
   const [orders, setOrders] = useState([]);
+   const [activePage, setActivePage] = useState("form");
+
   const addOrder = (newOrder) => {
     setOrders([...orders, newOrder]);
   }
@@ -21,7 +23,7 @@ function App() {
         
       
     <div style={{ display: "flex", height: "100vh" }}>
-      <Sidebar />
+      <Sidebar setActivePage={setActivePage} />
 
       <div
         style={{
@@ -35,9 +37,9 @@ function App() {
           padding: "20px",
         }}
       >
-        <OrderForm onAddOrder={addOrder} />
-        <OrderList orders={orders} onDelete={handleDelete}  />
-        <Summary orders={orders} />
+         {activePage === "form" && <OrderForm onAddOrder={addOrder} />}
+        {activePage === "list" && <OrderList orders={orders} onDelete={handleDelete} />}
+        {activePage === "summary" && <Summary orders={orders} />}
       </div>
     </div>
       
