@@ -1,4 +1,4 @@
- function Ordersummary({orders}) {
+ function Ordersummary({orders = []}) {
     const totalOrders = orders.length
     const totalQuantity = orders.reduce((sum, orders) => sum + Number(orders.quantity) , 0);
     const totalRevenue = orders.reduce((sum, orders) => sum + Number(orders.total) , 0);

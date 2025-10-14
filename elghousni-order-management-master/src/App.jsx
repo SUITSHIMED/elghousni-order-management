@@ -1,48 +1,39 @@
-
-import React, { useState } from "react";
+import { useState } from "react";
+import { Routes, Route } from "react-router-dom";
 import Sidebar from "./components/Sidebar";
-import OrderForm from "./components/Orderform";
-import OrderList from "./components/Orderlist";
-import Summary from "./components/Summary";
+import Dashboard from "./pages/Dashboard";
+import OrdersPage from "./pages/OrdersPage";
 
 function App() {
   const [orders, setOrders] = useState([]);
-   const [activePage, setActivePage] = useState("form");
 
   const addOrder = (newOrder) => {
     setOrders([...orders, newOrder]);
-  }
-  
-  const handleDelete = (indexToDelete) => {
-    const updatedOrders = orders.filter((_,index) => index !== indexToDelete);
-    setOrders (updatedOrders);
-    };
-  
+  };
+
+  const deleteOrder = (index) => {
+    setOrders(orders.filter((_, i) => i !== index));
+  };
 
   return (
-        
-      
-    <div style={{ display: "flex", height: "100vh" }}>
-      <Sidebar setActivePage={setActivePage} />
-
-      <div
-        style={{
-          flex: 1,
-          width: "90%",
-          margin: "0 auto",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          gap: "20px",
-          padding: "20px",
-        }}
-      >
-         {activePage === "form" && <OrderForm onAddOrder={addOrder} />}
-        {activePage === "list" && <OrderList orders={orders} onDelete={handleDelete} />}
-        {activePage === "summary" && <Summary orders={orders} />}
+    <div style={{ display: "flex", minHeight: "100vh" }}>
+      <Sidebar />
+      <div style={{ flex: 1, padding: "20px" }}>
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route
+            path="/orders"
+            element={
+              <OrdersPage
+                orders={orders}
+                onAddOrder={addOrder}
+                onDelete={deleteOrder}
+              />
+            }
+          />
+        </Routes>
       </div>
     </div>
-      
   );
 }
 

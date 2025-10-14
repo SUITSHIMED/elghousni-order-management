@@ -1,6 +1,10 @@
+import useStore from "../store/useStore";
 
-function OrderList({ orders , onDelete }) {
- 
+function OrderList() {
+  const orders = useStore((state) => state.orders);
+  const deleteOrder = useStore((state) => state.deleteOrder);
+  const changeStatus = useStore((state) => state.changeStatus);
+
   return (
     <div
       style={{
@@ -8,40 +12,47 @@ function OrderList({ orders , onDelete }) {
         background: "#9699a7ff",
         padding: "20px",
         borderRadius: "10px",
+        marginTop: "20px",
       }}
     >
-      <h2 style={{ color: "#2f3640", marginBottom: "15px" , textAlign:"center" }}>Liste des Commandes</h2>
-      <table style={{
-            width: "100%",
-            borderCollapse: "collapse",
-            textAlign: "center",
-          }}>
-        <thead>
-          <tr>
-            <th style={{padding:"12px" , color:"black"}}>Client</th>
-            <th style={{padding:"12px" ,  color:"black"}}>Produit</th>
-            <th style={{padding:"12px",  color:"black" }}>Quantité</th>
-            <th style={{padding:"12px" ,  color:"black"}}>Total</th>
-            <th style={{padding:"12px" , color:"black"}}>Statut</th>
-          
-          </tr>
-        </thead>
-        <tbody>
-          {orders.map((order, i) => (
-            <tr key={i}>
-              <td style={{padding:"10px"}}>{order.name}</td>
-              <td style={{padding:"10px"}}>{order.product}</td>
-              <td style={{padding:"10px"}}>{order.quantity}</td>
-              <td style={{padding:"10px"}}>{order.total} MAD</td>
-              <td style={{padding:"10px"}}>{order.status}</td>
-              <td><button onClick = {() => onDelete(i)} >Delete</button></td>
-               
+      <h2 style={{ textAlign: "center" }}>Orders List</h2>
+      {orders.length === 0 ? (
+        <p style={{ textAlign: "center" }}>No orders yet.</p>
+      ) : (
+        <table style={{ width: "100%", borderCollapse: "collapse" }}>
+          <thead>
+            <tr>
+              <th>Client</th>
+              <th>Product</th>
+              <th>Quantity</th>
+              <th>Total</th>
+              <th>Status</th>
+              <th>Actions</th>
             </tr>
-            
-          ))}
-        </tbody>
-     
-      </table>
+          </thead>
+          <tbody>
+            {orders.map((order, i) => (
+              <tr key={i}>
+                <td>{order.name}</td>
+                <td>{order.product}</td>
+                <td>{order.quantity}</td>
+                <td>{order.total} MAD</td>
+                <td>{order.status}</td>
+                <td>
+                  <button onClick={() => deleteOrder(i)}>Delete</button>
+                  <button
+                    onClick={() =>
+                      changeStatus(i, order.status === "Pending" ? "Completed" : "Pending")
+                    }
+                  >
+                    Change Status
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
     </div>
   );
 }
