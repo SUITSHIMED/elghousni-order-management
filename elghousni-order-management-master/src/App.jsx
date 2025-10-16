@@ -3,6 +3,9 @@ import { Routes, Route } from "react-router-dom";
 import Sidebar from "./components/Sidebar";
 import Dashboard from "./pages/Dashboard";
 import OrdersPage from "./pages/OrdersPage";
+import products from "./data/products";
+import ProductsPage from "./pages/Products";
+import Layout from "./layout/layout";
 
 function App() {
   const [orders, setOrders] = useState([]);
@@ -16,24 +19,26 @@ function App() {
   };
 
   return (
-    <div style={{ display: "flex", minHeight: "100vh" }}>
-      <Sidebar />
-      <div style={{ flex: 1, padding: "20px" }}>
-        <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route
-            path="/orders"
-            element={
-              <OrdersPage
-                orders={orders}
-                onAddOrder={addOrder}
-                onDelete={deleteOrder}
-              />
-            }
-          />
-        </Routes>
-      </div>
-    </div>
+    <Routes>
+      <Route
+        path="/"
+        element={<Layout />}
+      >
+        <Route index element={<Dashboard />} />
+        <Route
+          path="orders"
+          element={
+            <OrdersPage
+              orders={orders}
+              onAddOrder={addOrder}
+              onDelete={deleteOrder}
+              products={products}
+            />
+          }
+        />
+        <Route path="products" element={<ProductsPage />} />
+      </Route>
+    </Routes>
   );
 }
 

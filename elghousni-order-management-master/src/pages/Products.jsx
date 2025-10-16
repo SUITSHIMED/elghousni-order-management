@@ -1,50 +1,38 @@
 import useStore from "../store/useStore";
-import { useState } from "react";
 
-function ProductPage() {
+function ProductsPage() {
   const products = useStore((state) => state.products);
-  const addProduct = useStore((state) => state.addProduct);
-  const deleteProduct = useStore((state) => state.deleteProduct);
-
-  const [name, setName] = useState("");
-  const [price, setPrice] = useState("");
-
-  const handleAdd = (e) => {
-    e.preventDefault();
-    addProduct({ id: Date.now(), name, price: Number(price) });
-    setName("");
-    setPrice("");
-  };
 
   return (
     <div>
-      <h1>Produits</h1>
-      <form onSubmit={handleAdd}>
-        <input
-          type="text"
-          placeholder="Nom du produit"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <input
-          type="number"
-          placeholder="Prix"
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
-        />
-        <button type="submit">Ajouter</button>
-      </form>
-
-      <ul>
-        {products.map((p) => (
-          <li key={p.id}>
-            {p.name} - {p.price} MAD
-            <button onClick={() => deleteProduct(p.id)}>Supprimer</button>
-          </li>
-        ))}
-      </ul>
+      <h1>Liste des Produits</h1>
+      {products.length === 0 ? (
+        <p>Aucun produit disponible.</p>
+      ) : (
+        <table border="1" cellPadding="8" style={{
+        marginLeft: "240px", 
+        padding: "30px",
+        backgroundColor: "#f1f2f6",
+        minHeight: "100vh",
+        boxSizing: "border-box",}}>
+          <thead>
+            <tr>
+              <th>Nom</th>
+              <th>Prix (MAD)</th>
+            </tr>
+          </thead>
+          <tbody>
+            {products.map((p) => (
+              <tr key={p.id}>
+                <td>{p.name}</td>
+                <td>{p.price}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
     </div>
   );
 }
 
-export default ProductPage;
+export default ProductsPage;

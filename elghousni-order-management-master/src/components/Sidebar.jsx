@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Sidebar() {
   return (
     <div
@@ -17,9 +19,9 @@ function Sidebar() {
       }}
     >
       <h2 style={{ marginBottom: "30px" }}>System Management</h2>
-      <a href="/" style={{ color: "white", marginBottom: "15px", textDecoration: "none" }}>Dashboard</a>
-      <a href="/orders" style={{ color: "white", marginBottom: "15px", textDecoration: "none" }}>Orders</a>
-      <a href="/products" style={{ color: "white", textDecoration: "none" }}>Products</a>
+      <Link to="/" style={{ color: "white", marginBottom: "15px", textDecoration: "none" }}>Dashboard</Link>
+      <Link to="/orders" style={{ color: "white", marginBottom: "15px", textDecoration: "none" }}>Orders</Link>
+      <Link to="/products" style={{ color: "white", textDecoration: "none" }}>Products</Link>
     </div>
   );
 }

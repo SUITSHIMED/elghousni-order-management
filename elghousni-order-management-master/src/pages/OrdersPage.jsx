@@ -33,7 +33,12 @@ function OrdersPage() {
           placeholder="Nom du client"
           value={clientName}
           onChange={(e) => setClientName(e.target.value)}
-        />
+         style={{
+        marginLeft: "240px", 
+        padding: "30px",
+        backgroundColor: "#f1f2f6",
+        minHeight: "100vh",
+        boxSizing: "border-box",}}/>
         <select
           value={selectedProduct}
           onChange={(e) => setSelectedProduct(e.target.value)}
@@ -52,7 +57,12 @@ function OrdersPage() {
         <button type="submit">Ajouter</button>
       </form>
 
-      <table>
+      <table  style={{
+        marginLeft: "540px", 
+        padding: "30px",
+        backgroundColor: "#f1f2f6",
+        minHeight: "100vh",
+        boxSizing: "border-box"}}>
         <thead>
           <tr>
             <th>Client</th>

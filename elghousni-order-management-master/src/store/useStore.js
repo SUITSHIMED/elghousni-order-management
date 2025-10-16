@@ -1,13 +1,13 @@
 import { create } from "zustand";
-
+import products from "../data/products";
 const useStore = create((set) => ({
-  // State
+  products, 
   orders: [],
-  products: [],
 
-  // Orders actions
   addOrder: (order) =>
-    set((state) => ({ orders: [...state.orders, order] })),
+    set((state) => ({
+      orders: [...state.orders, order],
+    })),
 
   deleteOrder: (index) =>
     set((state) => ({
@@ -20,22 +20,8 @@ const useStore = create((set) => ({
         i === index ? { ...order, status: newStatus } : order
       ),
     })),
-
-  // Products actions
-  addProduct: (product) =>
-    set((state) => ({ products: [...state.products, product] })),
-
-  deleteProduct: (id) =>
-    set((state) => ({
-      products: state.products.filter((p) => p.id !== id),
-    })),
-
-  editProduct: (id, updatedProduct) =>
-    set((state) => ({
-      products: state.products.map((p) =>
-        p.id === id ? { ...p, ...updatedProduct } : p
-      ),
-    })),
 }));
 
 export default useStore;
+
+
