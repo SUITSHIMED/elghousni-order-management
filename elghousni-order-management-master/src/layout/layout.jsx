@@ -7,11 +7,11 @@ function Layout() {
         <div style={{ display: "flex", minHeight: "100vh" }}>
             <Sidebar />
             <div style={{ flex: 1, padding: "20px" }}>
-                <Outlet /> {/* This will render the nested routes */}
+                <Outlet /> 
             </div>
         </div>
     );
 }
 
-// Remove the named export and use only default export
+
 export default Layout;

@@ -24,7 +24,12 @@ function OrdersPage() {
   };
 
   return (
-    <div>
+    <div style={{
+        marginLeft: "240px", 
+        padding: "20px",
+        backgroundColor: "#f1f2f6",
+        minHeight: "10vh",
+        boxSizing: "border-box",}}>
       <h1>Gestion des Commandes</h1>
 
       <form onSubmit={handleAddOrder}>
@@ -33,12 +38,7 @@ function OrdersPage() {
           placeholder="Nom du client"
           value={clientName}
           onChange={(e) => setClientName(e.target.value)}
-         style={{
-        marginLeft: "240px", 
-        padding: "30px",
-        backgroundColor: "#f1f2f6",
-        minHeight: "100vh",
-        boxSizing: "border-box",}}/>
+         />
         <select
           value={selectedProduct}
           onChange={(e) => setSelectedProduct(e.target.value)}
